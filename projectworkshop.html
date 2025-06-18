@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Belajar dasar-dasar pengembangan web" />
+    <title>
+      Belajar Buat Website Setelah Mengadakan Workshop | HTML + CSS + JS
+    </title>
+    <style>
+      /* Variabel CSS */
+      :root {
+        --primary: #1e88e5; /* Biru langit utama */
+        --primary-light: #64b5f6; /* Biru langit lebih terang */
+        --primary-dark: #0d47a1; /* Biru lebih gelap */
+        --white: #ffffff;
+        --light-gray: #f5f5f5;
+        --dark-gray: #333333;
+        --sky-blue: #87ceeb; /* Warna biru langit */
+      }
+
+      /* Reset dan Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: var(--dark-gray);
+        line-height: 1.6;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* Background Animasi 3D */
+      #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+      }
+
+      /* Header Styles */
+      .header {
+        background-color: rgba(30, 136, 229, 0.9);
+        color: var(--white);
+        padding: 2rem 1rem;
+        text-align: center;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        position: relative;
+        backdrop-filter: blur(5px);
+      }
+
+      .header__title {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .header__subtitle {
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+
+      /* Main Content */
+      .main {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        position: relative;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 12px;
+        padding: 2.5rem;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+      }
+
+      .card__title {
+        color: var(--primary);
+        margin-bottom: 0.8rem;
+        font-size: 1.8rem;
+      }
+
+      .card__subtitle {
+        color: var(--primary-light);
+        margin-bottom: 0.6rem;
+        font-size: 1.3rem;
+      }
+
+      .card__info {
+        color: var(--primary-dark);
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+      }
+
+      .card__text {
+        margin-bottom: 1.8rem;
+        color: #555;
+        font-size: 1rem;
+      }
+
+      /* Button Styles */
+      .button {
+        background: var(--primary-light);
+        color: var(--white);
+        border: none;
+        padding: 0.9rem 2rem;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(100, 181, 246, 0.4);
+        position: relative;
+        overflow: hidden;
+        font-weight: 600;
+      }
+
+      .button:hover {
+        background: var(--primary);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 16px rgba(30, 136, 229, 0.4);
+      }
+
+      .button:active {
+        transform: translateY(1px);
+      }
+
+      .button::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 5px;
+        height: 5px;
+        background: rgba(255, 255, 255, 0.5);
+        opacity: 0;
+        border-radius: 100%;
+        transform: scale(1, 1) translate(-50%);
+        transform-origin: 50% 50%;
+      }
+
+      .button:focus:not(:active)::after {
+        animation: ripple 0.6s ease-out;
+      }
+
+      /* Output Styles */
+      .output {
+        margin-top: 1.8rem;
+        padding: 1.5rem;
+        background: rgba(30, 136, 229, 0.1);
+        border-radius: 10px;
+        font-weight: 600;
+        color: var(--primary-dark);
+        min-height: 4rem;
+        animation: fadeIn 0.5s ease;
+        border-left: 5px solid var(--primary);
+        font-size: 1.1rem;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(15px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes ripple {
+        0% {
+          transform: scale(0, 0);
+          opacity: 0.5;
+        }
+        100% {
+          transform: scale(20, 20);
+          opacity: 0;
+        }
+      }
+
+      /* Cloud Animation */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .cloud {
+        position: absolute;
+        color: white;
+        font-size: 3rem;
+        opacity: 0.8;
+        animation: float 6s ease-in-out infinite;
+        z-index: -1;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 600px) {
+        .header {
+          padding: 1.5rem 1rem;
+        }
+
+        .header__title {
+          font-size: 1.7rem;
+        }
+
+        .card {
+          padding: 1.8rem;
+        }
+
+        .card__title {
+          font-size: 1.5rem;
+        }
+
+        .card__subtitle {
+          font-size: 1.1rem;
+        }
+
+        .button {
+          padding: 0.8rem 1.5rem;
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background Animasi Partikel -->
+    <div id="particles-js"></div>
+
+    <!-- Cloud Decorations -->
+    <div class="cloud" style="top: 20%; left: 10%">☁️</div>
+    <div class="cloud" style="top: 30%; right: 15%; animation-delay: 1s">
+      ☁️
+    </div>
+    <div class="cloud" style="top: 60%; left: 20%; animation-delay: 2s">☁️</div>
+
+    <header class="header">
+      <div class="header__content">
+        <h1 class="header__title">
+          Belajar Buat Website Setelah Mengadakan Workshop
+        </h1>
+        <p class="header__subtitle">HTML + CSS + JavaScript</p>
+      </div>
+    </header>
+
+    <main class="main">
+      <article class="card">
+        <h2 class="card__title">
+          Hi Nama Saya Muhammad Naufal Qushoyyi Rusdiyanto!
+        </h2>
+        <h3 class="card__subtitle">NIM 241011450008</h3>
+        <h4 class="card__info">01TPLE001 - Semester 1</h4>
+        <p class="card__text">Workshop Cloud Hosting</p>
+        <button id="messageBtn" class="button">Ketahui Lebih Lanjut</button>
+        <div id="output" class="output"></div>
+      </article>
+    </main>
+
+    <!-- Library Partikel.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script>
+      // Inisialisasi partikel background
+      document.addEventListener("DOMContentLoaded", function () {
+        particlesJS("particles-js", {
+          particles: {
+            number: {
+              value: 70,
+              density: {
+                enable: true,
+                value_area: 800,
+              },
+            },
+            color: {
+              value: "#64B5F6",
+            },
+            shape: {
+              type: "circle",
+              stroke: {
+                width: 0,
+                color: "#000000",
+              },
+              polygon: {
+                nb_sides: 5,
+              },
+            },
+            opacity: {
+              value: 0.6,
+              random: true,
+              anim: {
+                enable: false,
+                speed: 1,
+                opacity_min: 0.1,
+                sync: false,
+              },
+            },
+            size: {
+              value: 3.5,
+              random: true,
+              anim: {
+                enable: false,
+                speed: 40,
+                size_min: 0.1,
+                sync: false,
+              },
+            },
+            line_linked: {
+              enable: true,
+              distance: 160,
+              color: "#64B5F6",
+              opacity: 0.3,
+              width: 1.2,
+            },
+            move: {
+              enable: true,
+              speed: 1.8,
+              direction: "none",
+              random: true,
+              straight: false,
+              out_mode: "out",
+              bounce: false,
+              attract: {
+                enable: true,
+                rotateX: 600,
+                rotateY: 1200,
+              },
+            },
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: {
+                enable: true,
+                mode: "grab",
+              },
+              onclick: {
+                enable: true,
+                mode: "push",
+              },
+              resize: true,
+            },
+            modes: {
+              grab: {
+                distance: 150,
+                line_linked: {
+                  opacity: 0.7,
+                },
+              },
+              push: {
+                particles_nb: 3,
+              },
+            },
+          },
+          retina_detect: true,
+        });
+
+        // Fungsi tombol
+        const messageBtn = document.getElementById("messageBtn");
+        const output = document.getElementById("output");
+
+        messageBtn.addEventListener("click", showMessage);
+
+        function showMessage() {
+          output.textContent =
+            "Terima kasih telah mengklik tombol! Workshop yang telah membahas tentang cloud hosting.";
+          output.style.animation = "fadeIn 0.5s ease";
+
+          // Reset animation after it completes
+          setTimeout(() => {
+            output.style.animation = "";
+          }, 500);
+        }
+      });
+    </script>
+  </body>
+</html>
